@@ -1,0 +1,23 @@
+public class Solution {
+    public ListNode reorderList(ListNode head) {
+        int n = 0;
+        //count the numner of nodes
+        Stack<ListNode> st = new Stack<>();
+        ListNode tail = head;
+        while(tail!=null){
+            st.push(tail);
+            tail = tail.next;
+            n+=1;
+        }
+        tail = head;
+        for(int i = 0; i<n/2; i++){
+            ListNode str = tail.next;
+            tail.next = st.peek();
+            st.pop().next = str;
+
+            tail = tail.next.next;
+        }
+        tail.next  = null;
+        return head;
+    }
+}
