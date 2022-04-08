@@ -1,0 +1,27 @@
+public class Solution {
+    public int evalRPN(String[] a) {
+        Stack<Integer>st = new Stack<Integer>();
+	    st.add(0);
+	    for(String x : a){
+	        if(x .equals("+")){
+	            int c = st.pop();
+	            int b = st.pop();
+	            st.add(b+c);
+	        }else if(x .equals("-")){
+	            int c = st.pop();
+	            int b = st.pop();
+	            st.add(b-c);
+	        }else if(x .equals("*")){
+	            int c = st.pop();
+	            int b = st.pop();
+	            st.add(b*c);
+	        }else if( x .equals("/") ) {
+	            int c = st.pop();
+	            int b = st.pop();
+	            st.add(b/c);
+	        }else
+	            st.push(Integer.parseInt(x));
+	    }
+	    return st.pop();
+    }
+}
