@@ -1,0 +1,34 @@
+public class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        int diff = n-m;
+        ListNode node  = head;
+        if(m ==1 ){
+           return  reverse(head,diff);
+        }
+        ListNode prev = null;
+        while(m>1){
+            prev = head;
+            head = head.next;
+            m--;
+        }
+        ListNode temp = reverse(head, diff);
+        prev.next = temp;
+        return node;
+    }
+    
+    public ListNode reverse(ListNode head, int k){
+    ListNode prev = null;
+    ListNode curr = null;
+    ListNode next = null;
+        curr = head;
+        while(curr != null && k>=0){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            k--;
+        }
+        head.next = curr;
+        return prev;
+    }
+}
