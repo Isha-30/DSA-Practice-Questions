@@ -1,0 +1,18 @@
+public class Solution {
+    public int uniquePaths(int A, int B) {
+        int[][] dp = new int[A][B];
+        return helper(A, B, 0, 0, dp);
+    }
+    private static int helper(int n, int m, int st, int end, int[][] dp){
+        if(st>=n || end>=m)
+            return 0;
+        if(st == n-1 && end == m-1)
+            return 1;
+        if(dp[st][end] == -1)
+            return dp[st][end];
+        else{
+            dp[st][end] =  helper(n, m , st+1, end, dp) + helper(n, m, st, end+1, dp);
+            return dp[st][end];
+        }
+    }
+}
