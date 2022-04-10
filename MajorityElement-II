@@ -1,0 +1,36 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> ans = new ArrayList<>();
+        int num1 = Integer.MAX_VALUE, num2 = Integer.MAX_VALUE, count1 = 0, count2 = 0, l = nums.length;
+        //calculate freq
+        for(int n : nums){
+            if(num1 == n)
+                count1++;
+            else if(num2 == n)
+                count2++;
+            else if(count1 == 0){
+                num1 = n;
+                count1++;
+            }else if(count2 == 0){
+                num2 = n;
+                count2++;
+            }else{
+                count1--;
+                count2--;
+            }
+        }
+        //check if freq >n/3
+        count1 = 0; count2 = 0;
+        for(int i : nums){
+            if(i == num1)
+                count1++;
+            if(i==num2)
+                count2++;
+        }
+        if(count1>(l/3))
+            ans.add(num1);
+        if(count2>(l/3))
+            ans.add(num2);
+        return ans;
+    }
+}
