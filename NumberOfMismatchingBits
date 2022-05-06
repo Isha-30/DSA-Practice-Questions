@@ -1,0 +1,19 @@
+public class Solution 
+{
+
+	public static int numberOfMismatchingBits(int first, int second)
+	{
+		int xor = first ^ second;
+		int ans = count1s(xor);
+		return ans;
+	}
+	
+	private static int count1s(int num){
+		int count = 0;
+		while(num > 0){
+			num = num & (num-1);
+			count += 1;
+		}
+		return count;
+	}
+}
