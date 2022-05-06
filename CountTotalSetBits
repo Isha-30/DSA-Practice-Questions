@@ -1,0 +1,11 @@
+public class Solution {
+    int mod = (int)1e9 + 7;
+    public int solve(int n) {
+        long res = 0;
+        // Integer.bitCount(num) returns number of set bit in num in constant time
+        for(int i = 1; i <= n; i++){
+            res += Integer.bitCount(i);
+        }
+        return (int)(res%mod);
+    }
+}
