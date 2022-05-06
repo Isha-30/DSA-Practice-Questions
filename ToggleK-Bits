@@ -1,0 +1,7 @@
+public class Solution {
+    public static int toggleKBits(int n, int k) {
+        // Write your code here.
+		int ans = (1<<k)-1;
+		return n ^ ans;
+    }
+}
