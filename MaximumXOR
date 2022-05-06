@@ -1,0 +1,11 @@
+public class Solution {
+
+	public static long findValueWhoseXORWithGivenNumberIsMaximum(long X) {
+
+		// Number of bits in the given integer.
+		int numberOfBits = 61;
+		
+		// Find XOR of X with all set 63 bit number i.e. (1<<63)-1.
+		return ((1L << numberOfBits) - 1) ^ X;
+	}
+}
