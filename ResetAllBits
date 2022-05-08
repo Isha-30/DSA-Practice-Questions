@@ -1,0 +1,11 @@
+public class Solution {
+    public static int resetAllExceptMSB(int n) {
+        int count = 0, k;
+		while(n>0){
+			n /= 2;
+			count++;
+		}
+		k = 1<<count-1;
+		return k;
+    }
+}
