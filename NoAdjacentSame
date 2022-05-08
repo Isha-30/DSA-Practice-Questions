@@ -1,0 +1,12 @@
+public class Solution {
+    public static boolean checkBits(int n) {
+        int num = n ^(n>>1);
+		return checkSetBits(num);
+    }
+	private static boolean checkSetBits(int num){
+		if((num & (num+1))==0) //all bits are set 
+			return true;
+		else
+			return false;
+	}
+}
