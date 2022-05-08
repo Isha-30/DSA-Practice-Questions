@@ -1,0 +1,9 @@
+public class Solution {
+    public static int setKBits(int n, int k) {
+        for(int i = 1; i<=k; i++){
+			n = n | (1<<k);
+			System.out.println(n);
+		}
+		return n;
+    }
+}
