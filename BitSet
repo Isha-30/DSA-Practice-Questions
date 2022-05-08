@@ -1,0 +1,13 @@
+public class Solution {
+    public static int findFirstRepeatingDigit(String digitPattern) {
+    	int bitset = 0;
+		for(int i = 0; i<digitPattern.length(); i++){
+			int digit = digitPattern.charAt(i) - '0';
+			if((bitset & (1<<digit)) >= 1)
+				return digit;
+			else
+				bitset = bitset | (1<<digit);
+		}
+		return -1;
+    }
+}
