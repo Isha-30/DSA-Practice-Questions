@@ -3,7 +3,7 @@ public class Solution {
         // Write your code here.
 		for(int i = r; i<=l;i++){
 			int k = i-1;
-			n = n ^ (1<<k);
+			//n = n ^ (1<<k);
 			n = n & (~(1<<k));
 		}
 		return n;
