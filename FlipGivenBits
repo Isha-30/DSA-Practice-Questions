@@ -1,0 +1,10 @@
+public class Solution {
+	
+	public static int flipSomeBits(int num, int[] arr, int n) {
+		for(int k : arr){
+			num = num ^ (1<<k-1);
+		}
+		return num;
+	}
+	
+}	
