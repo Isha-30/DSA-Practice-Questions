@@ -1,0 +1,29 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        int n = A.size();
+        int[] suffix = new int[n+1];
+        suffix[n] = 0;
+        //fill suffix array
+        for(int i = n-1; i>=0; i--){
+            suffix[i] = Math.max(suffix[i+1], A.get(i));
+        }
+
+        int max = Integer.MIN_VALUE;
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(Integer.MIN_VALUE);
+ 
+        for(int i = 0; i < n - 1; ++i)
+        {
+            if (suffix[i + 1] > A.get(i))
+            {
+                max = Math.max(max, set.lower(A.get(i)) +
+                            A.get(i) + suffix[i + 1]);
+    
+                // Insert arr[i] in set<> for further
+                // processing
+                set.add(A.get(i));
+            }
+        }
+        return max;
+    }
+}
