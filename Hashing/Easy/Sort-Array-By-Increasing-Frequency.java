@@ -1,31 +1,24 @@
 class Solution {
     public int[] frequencySort(int[] nums) {
-        int[] ans = new int[nums.length];
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for(int n : nums){
-            map.put(n, map.getOrDefault(n, 0)+1);
-        }
+        int n = nums.length, res[] = new int[n];
         
-        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>(){
-           public int compare(Map.Entry<Integer, Integer> e1, Map.Entry<Integer, Integer> e2){
-               if(e1.getValue() == e2.getValue())
-                   return e2.getKey() - e1.getKey();
-               else
-                   return e1.getValue() - e2.getValue();
-           } 
-        });
+    Map<Integer, Integer> map = new HashMap<>();
+    PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> map.get(a) != map.get(b) ? map.get(b) - map.get(a) : a - b);
+    //heap will remove elements with higher frequency first
+    //if two or more elements have same frequency then smaller element will get removed first
+     
+    for(int e : nums)
+        map.merge(e, 1, Integer::sum);
+      
+    pq.addAll(map.keySet());
         
-        int i = 0;
-        for (Map.Entry<Integer, Integer> e : list) {
-            int val = e.getValue();
-            while(val > 0) {
-                ans[i] = e.getKey();
-                i++;
-                val--;
-            }
-        }
-        return ans;
+    while(n > 0){
+        int curr = pq.poll();
+        int freq = map.get(curr);
+        while(freq-- > 0)
+            res[--n] = curr;
+    }
+    return res;
     }
     
 }
