@@ -1,20 +1,27 @@
 class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        Stack<Integer> dfs = new Stack<>(); 
-        dfs.add(0);
-        HashSet<Integer> seen = new HashSet<Integer>(); 
-        seen.add(0);
-        while (!dfs.isEmpty()) {
-            int i = dfs.pop();
-            for (int j : rooms.get(i))
-                if (!seen.contains(j)) {
-                    dfs.add(j);
-                    seen.add(j);
-                    if (rooms.size() == seen.size()) 
-                        return true;
-                }
+        List<List<Integer>> comps = new ArrayList<>();
+        int vtces = rooms.size();
+        boolean[] visited = new boolean[vtces];
+     for(int v = 0; v<vtces; v++){
+        if(visited[v] == false){
+           List<Integer> comp = new ArrayList<>();
+           getConnected(rooms, v, comp, visited);
+           comps.add(comp);
         }
-        return rooms.size() == seen.size();
-      
+     }
+
+      return comps.size()==1;
+    }
+    
+    public static void getConnected(List<List<Integer>> graph, int src, List<Integer> comp, boolean[] visited){
+      visited[src] = true;
+      comp.add(src);
+
+      for(int e : graph.get(src)){
+         if(visited[e] == false){
+            getConnected(graph, e, comp, visited);
+         }
+      }
    }   
 }
