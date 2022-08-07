@@ -1,22 +1,15 @@
 class Solution {
     public boolean canReach(int[] arr, int start) {
-        int n = arr.length;
-        HashSet<Integer> visited = new HashSet<>(); // visited set
-        Queue<Integer> q = new LinkedList<>();
-        q.add(start);
-        while (!q.isEmpty()) {
-            int i = q.poll();
-            if (arr[i] == 0) 
-                return true; // found then return it
-            if (!visited.contains(i)){
-                visited.add(i);
-                if (i + arr[i] < n)
-                    q.add(i + arr[i]);
-                if (i - arr[i] >= 0)
-                    q.add(i - arr[i]);
-            }
-            
-        }
-        return false;// not found
+        return reachable(arr, start, 0);
+    }
+    
+    private boolean reachable(int[] arr, int i, int count){
+        if(i<0 || i>=arr.length || count >= arr.length)
+            return false;
+        
+        if(arr[i] == 0)
+            return true;
+        
+        return reachable(arr, i+arr[i], count+1) || reachable(arr, i-arr[i], count+1);
     }
 }
