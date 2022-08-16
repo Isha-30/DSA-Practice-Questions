@@ -3,8 +3,8 @@ class Solution {
         int curr = 0, sum = 0;
         int len = nums.length;
         
-        for(int i = 2; i<len; i++){
-            if(nums[i] - nums[i-1] == nums[i-1]-nums[i-2]){
+        for(int i = 1; i<len-1; i++){
+            if(nums[i] - nums[i-1] == nums[i+1]-nums[i]){
                 curr += 1;
                 sum += curr;
             }
