@@ -3,6 +3,8 @@ public class Solution {
 		int totalSum = 0;
         for(int i : arr)
             totalSum += i;
+		
+	//if sum is odd, no two subsets can have equal sum
         if(totalSum %2 != 0)
             return false;
         
